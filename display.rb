@@ -16,11 +16,16 @@ class Display
   end
 
   def print_board
-    board.grid.each_with_index do |row, idx|
-      line = "#{8 - idx} "
-      row.each do |piece|
-        color_options = colors_for(piece)
-        line += piece.to_s.colorize(color_options)
+    board.grid.each_with_index do |row, ridx|
+      line = "#{8 - ridx} "
+      row.each_with_index do |position, cidx|
+        if position.nil?
+          color_options = { background: background_color([ridx, cidx])}
+          line += "   ".colorize(color_options)
+        else
+          color_options = colors_for(position)
+          line += position.to_s.colorize(color_options)
+        end
       end
       puts line
     end
@@ -28,7 +33,7 @@ class Display
   end
 
   def colors_for(piece)
-    {background: background_color(piece.pos), color: piece.color}
+    { background: background_color(piece.pos), color: piece.color }
   end
 
   def background_color(pos)
