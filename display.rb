@@ -1,16 +1,19 @@
 load './board.rb'
+load './cursorable.rb'
 require 'colorize'
 
 class Display
+  include Cursorable
   attr_reader :board
 
   def initialize
     @board = Board.new
+    @cursor_pos = [0, 0]
   end
 
   def render
-    # system("clear")
-
+    system("clear")
+    build_grid
   end
 
   def build_grid
@@ -31,7 +34,9 @@ class Display
 
   def background_color(pos)
     x, y = pos
-    if (x + y).even?
+    if [x, y] == @cursor_pos
+      return :light_yellow #cursor
+    elsif (x + y).even?
       return :light_blue #white space
     else
       return :light_red #black space

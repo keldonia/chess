@@ -9,7 +9,11 @@ class Board
     populate_board
   end
 
-
+  def in_bounds?(pos)
+    x, y = pos
+    return true if (0..7).include?(x) && (0..7).include?(y)
+    false
+  end
 
   def move(start_pos, end_pos)
 
