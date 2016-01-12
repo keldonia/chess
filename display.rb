@@ -1,4 +1,3 @@
-load './board.rb'
 load './cursorable.rb'
 require 'colorize'
 
@@ -6,17 +5,17 @@ class Display
   include Cursorable
   attr_reader :board
 
-  def initialize
-    @board = Board.new
+  def initialize(board)
+    @board = board
     @cursor_pos = [0, 0]
   end
 
   def render
     system("clear")
-    build_grid
+    print_board
   end
 
-  def build_grid
+  def print_board
     board.grid.each_with_index do |row, idx|
       line = "#{8 - idx} "
       row.each do |piece|
