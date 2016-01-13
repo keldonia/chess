@@ -13,6 +13,7 @@ class Player
   def get_move
     #puts instructions for entering input
     from = get_input_loop
+    
     to = get_input_loop
     [from, to]
   end

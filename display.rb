@@ -11,7 +11,7 @@ class Display
   end
 
   def render
-    system("clear")
+    # system("clear")
     print_board
   end
 

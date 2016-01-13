@@ -2,7 +2,7 @@ load './board.rb'
 load './player.rb'
 
 class Chess
-  attr_reader :players
+  attr_reader :players, :board
 
   def initialize(player1 = "Jim", player2 = "Bob")
     @board = Board.new
@@ -15,12 +15,16 @@ class Chess
       players.each do |player|
         begin
         player_move = player.get_move #[[from_x, from_y], [to_x, to_y]]
-        raise "Invalid Move" if false #Ensures Game Logic
-
-        rescue
+        board.move(player_move[0], player_move[1])
+        rescue InvalidMoveError => e
+          puts "Error was #{e.message}"
           retry
         end
       end
     end
   end
+end
+
+
+class InvalidMoveError < StandardError
 end

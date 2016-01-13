@@ -1,5 +1,5 @@
 class Knight < Piece
-  def initialize(pos, color)
+  def initialize(pos, color, board)
     super
   end
 
