@@ -1,5 +1,6 @@
-load './piece.rb'
 require 'byebug'
+load './piece.rb'
+
 
 class Board
   attr_accessor :grid
